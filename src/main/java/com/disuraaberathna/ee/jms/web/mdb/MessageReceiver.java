@@ -8,10 +8,14 @@ import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
 @MessageDriven(activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Topic"),
 //        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "jms/MyTopic")
-        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "jms/MyQueue"),
+//        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "jms/MyQueue"),
+        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "activeMqTopic"),
+        @ActivationConfigProperty(propertyName = "destination", propertyValue = "activeMqTopic"),
+        @ActivationConfigProperty(propertyName = "resourceAdapter", propertyValue = "activemq-rar-6.1.6"),
 //        @ActivationConfigProperty(propertyName = "maxSession", propertyValue = "1")  // Server-specific
-        @ActivationConfigProperty(propertyName = "maxPoolSize", propertyValue = "1")
+//        @ActivationConfigProperty(propertyName = "maxPoolSize", propertyValue = "1")
 })
 public class MessageReceiver implements MessageListener {
 
