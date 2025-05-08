@@ -1,11 +1,14 @@
 package com.disuraaberathna.ee.jms.web.mdb;
 
+import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.MessageDriven;
 import jakarta.jms.JMSException;
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
-@MessageDriven(activationConfig = {})
+@MessageDriven(activationConfig = {
+        @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "jms/MyTopic")
+})
 public class MessageReceiver implements MessageListener {
     @Override
     public void onMessage(Message message) {
